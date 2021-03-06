@@ -1,5 +1,6 @@
 <?php
 require_once 'class-db.php';
+require_once 'config.php';
 @session_start();
 if (isset($_SESSION['id']) && isset($_SESSION['type'])) {
     if ($_SESSION['type'] == 0) {
@@ -14,7 +15,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['type'])) {
         <!DOCTYPE html>
 
         <head>
-            <title>Zoom WebSDK</title>
+            <title>POTENZA ZOOM</title>
             <meta charset="utf-8" />
             <link type="text/css" rel="stylesheet" href="https://source.zoom.us/1.9.0/css/bootstrap.css" />
             <link type="text/css" rel="stylesheet" href="https://source.zoom.us/1.9.0/css/react-select.css" />
@@ -25,6 +26,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['type'])) {
 
         <body>
             <style>
+                .fullScreen {
+                    width: 100vw;
+                    height: 100vh;
+                }
+
                 .vertical-scrollable>.row {
                     position: absolute;
                     top: 120px;
@@ -110,8 +116,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['type'])) {
                 </div>
             </div>
             </div>
+           
             <div class="vertical-scrollable row text-center">
-                <iframe height=" 300" width="600" title="Iframe Example" name="theFrame"></iframe>
+                
+                <iframe class="responsive-iframe " height=" 300" width="600" title="Iframe Example" name="theFrame"></iframe>
             </div>
 
 
@@ -125,15 +133,21 @@ if (isset($_SESSION['id']) && isset($_SESSION['type'])) {
             <script src="https://source.zoom.us/zoom-meeting-1.9.0.min.js"></script>
             <script src="js/tool.js"></script>
             <script src="js/vconsole.min.js"></script>
-            <script src="js/index.js"></script>
+
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <script>
-                var name = "<?php echo $name;   ?>"
+                var name = "<?php echo $name;   ?>";
+                var base_uri = "<?php echo BASE_URI;   ?>";
+                var api = "<?php echo API_KEY;   ?>";
+                var api_secret = "<?php echo SECRET_KEY;   ?>";
             </script>
+            <script src="js/index.js"></script>
             <script>
+                var url_get = base_uri + "/getallmeeting.php";
+
                 $.ajax({
                     type: "POST",
-                    url: "http://localhost/sample-app-web/CDN/getallmeeting.php",
+                    url: url_get,
                     dataType: 'json',
                     success: function(result) {
                         $.each(result, function(i, item) {
@@ -149,13 +163,13 @@ if (isset($_SESSION['id']) && isset($_SESSION['type'])) {
 
                     $(document).on('click', '.getmeeting', function() {
                         var val = $(this).attr('id');
-
+                        var url_get = base_uri + "/getmeeting.php";
                         $.ajax({
                             type: "POST",
                             data: {
                                 'id': val
                             },
-                            url: "http://localhost/sample-app-web/CDN/getmeeting.php",
+                            url: url_get,
                             dataType: 'json',
                             success: function(result) {
                                 console.log(result);

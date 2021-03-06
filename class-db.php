@@ -1,10 +1,11 @@
 <?php
+require_once "config.php";
 class DB
 {
-    private $dbHost     = "localhost";
-    private $dbUsername = "root";
-    private $dbPassword = "root";
-    private $dbName     = "zoom";
+    private $dbHost     = HOST;
+    private $dbUsername = USERNAME;
+    private $dbPassword = PASSWORD;
+    private $dbName     = DB_NAME;
 
     public function __construct()
     {

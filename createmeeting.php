@@ -3,13 +3,14 @@ require_once 'jwt/BeforeValidException.php';
 require_once 'jwt/ExpiredException.php';
 require_once 'jwt/SignatureInvalidException.php';
 require_once 'jwt/JWT.php';
+require_once "config.php";
 
 use \Firebase\JWT\JWT;
 
 class Zoom_Api
 {
-    private $zoom_api_key = 'I9lhxanzQ7yO6BP-fA7rFw';
-    private $zoom_api_secret = 'c9suCpAbpEBQWtMnxTmhwIFp5HGh0ZNol1uU';
+    private $zoom_api_key = API_KEY;
+    private $zoom_api_secret = SECRET_KEY;
 
     protected function sendRequest($data)
     {
