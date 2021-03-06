@@ -5,7 +5,9 @@
 2)Make Changes in config.php
 
 define("BASE_URI", "http://localhost/zoomapi/");
+
 //As per Your Database
+
 define("HOST", "localhost");
 define("USERNAME", "root");
 define("PASSWORD", "root");
