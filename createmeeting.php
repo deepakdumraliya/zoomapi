@@ -45,8 +45,7 @@ class Zoom_Api
             "iss" => $key,
             "exp" => time() + 3600 //60 seconds as suggested
         );
-        // $token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6IlI1OWZNMEViUXFPcWNrU0c4dzR2MmciLCJleHAiOjE1OTA1MTM4NDUsImlhdCI6MTU5MDUwODQ0N30.4ch2OZoFM_vZFdqhoMzJX8r8GPYjKlOkV_vUa7LprFc";
-        return JWT::encode($token, $secret);
+         return JWT::encode($token, $secret);
     }
 
     public function createAMeeting($data = array())
