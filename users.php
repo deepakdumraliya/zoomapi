@@ -88,7 +88,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['type'])) {
             </style>
 
             <div>
-                <div class="container">
+                <div class="container" id="join">
                     <hr>
                     <h1>Users Joining Page</h1>
                     <hr>
@@ -116,10 +116,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['type'])) {
                 </div>
             </div>
             </div>
-           
-            <div class="vertical-scrollable row text-center">
-                
-                <iframe class="responsive-iframe " height=" 300" width="600" title="Iframe Example" name="theFrame"></iframe>
+
+            <div id="mymeeting" hidden="true">
+                <h1>Header</h1>
+                <iframe class="responsive-iframe" height="600" width="100%" title="Iframe Example" name="theFrame"></iframe>
+                <h1>Footer</h1>
             </div>
 
 
@@ -174,6 +175,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['type'])) {
                             success: function(result) {
                                 console.log(result);
                                 websdkready(result.meeting_id, result.passcode, 0, name);
+                                $("#join").attr("hidden", true);
+                                $("#mymeeting").removeAttr('hidden');
                             }
                         });
 
